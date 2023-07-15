@@ -14,6 +14,10 @@ const (
 
 type MessageID [MsgIDLength]byte
 
+func (m MessageID) String() string {
+	return string(m[:])
+}
+
 type Message struct {
 	ID        MessageID
 	Body      []byte

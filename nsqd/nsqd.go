@@ -169,7 +169,7 @@ func New(opts *Options) (*NSQD, error) {
 	}
 
 	if opts.StatsdPrefix != "" {
-		var port string = fmt.Sprint(opts.BroadcastHTTPPort)
+		var port = fmt.Sprint(opts.BroadcastHTTPPort)
 		statsdHostKey := statsd.HostKey(net.JoinHostPort(opts.BroadcastAddress, port))
 		prefixWithHost := strings.Replace(opts.StatsdPrefix, "%s", statsdHostKey, -1)
 		if prefixWithHost[len(prefixWithHost)-1] != '.' {
@@ -766,4 +766,15 @@ func (n *NSQD) IsAuthEnabled() bool {
 // Context returns a context that will be canceled when nsqd initiates the shutdown
 func (n *NSQD) Context() context.Context {
 	return n.ctx
+}
+
+func (n *NSQD) CloneTopic() map[string]*Topic {
+	topicMap := map[string]*Topic{}
+	n.RLock()
+	for k, v := range n.topicMap {
+		topicMap[k] = v
+	}
+	n.RUnlock()
+
+	return topicMap
 }

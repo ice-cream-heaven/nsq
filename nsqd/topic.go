@@ -502,3 +502,14 @@ func (t *Topic) GenerateID() MessageID {
 		i++
 	}
 }
+
+func (t *Topic) CloneChannel() map[string]*Channel {
+	channelMap := map[string]*Channel{}
+	t.RLock()
+	for k, v := range t.channelMap {
+		channelMap[k] = v
+	}
+	t.RUnlock()
+
+	return channelMap
+}

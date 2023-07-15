@@ -615,3 +615,50 @@ func (c *Channel) processInFlightQueue(t int64) bool {
 exit:
 	return dirty
 }
+
+func (c *Channel) ReadMessage() *Message {
+	for {
+		select {
+		case body := <-c.memoryMsgChan:
+			return body
+		case body := <-c.backend.ReadChan():
+			msg, err := decodeMessage(body)
+			if err != nil {
+				continue
+			}
+			return msg
+		}
+	}
+}
+
+func (c *Channel) InFlightDepth() int64 {
+	c.inFlightMutex.Lock()
+	defer c.inFlightMutex.Unlock()
+
+	return int64(len(c.inFlightMessages))
+}
+
+func (c *Channel) DeferredDepth() int64 {
+	c.deferredMutex.Lock()
+	defer c.deferredMutex.Unlock()
+	return int64(len(c.deferredMessages))
+}
+
+func (c *Channel) ReadMessageWithTimeout(timeout time.Duration) *Message {
+	timer := time.NewTimer(timeout)
+	defer timer.Stop()
+	for {
+		select {
+		case body := <-c.memoryMsgChan:
+			return body
+		case body := <-c.backend.ReadChan():
+			msg, err := decodeMessage(body)
+			if err != nil {
+				continue
+			}
+			return msg
+		case <-timer.C:
+			return nil
+		}
+	}
+}
