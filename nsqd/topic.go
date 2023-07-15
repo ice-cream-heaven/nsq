@@ -513,3 +513,14 @@ func (t *Topic) CloneChannel() map[string]*Channel {
 
 	return channelMap
 }
+
+func (t *Topic) ChannelExist(name string) bool {
+	t.RLock()
+	_, ok := t.channelMap[name]
+	t.RUnlock()
+	return ok
+}
+
+func (t *Topic) Name() string {
+	return t.name
+}
