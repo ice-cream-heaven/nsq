@@ -3,11 +3,11 @@ module github.com/nsqio/nsq
 go 1.17
 
 require (
-	github.com/BurntSushi/toml v1.2.1
+	github.com/BurntSushi/toml v1.3.2
 	github.com/bitly/go-hostpool v0.1.0
 	github.com/bitly/timer_metrics v1.0.0
 	github.com/blang/semver v3.5.1+incompatible
-	github.com/bmizerany/perks v0.0.0-20230307044200-03f9df79da1e
+	github.com/bmizerany/perks v0.0.0-20141205001514-d9a9656a3a4b
 	github.com/golang/snappy v0.0.4
 	github.com/judwhite/go-svc v1.2.1
 	github.com/julienschmidt/httprouter v1.3.0
@@ -17,7 +17,7 @@ require (
 )
 
 require (
-	github.com/stretchr/testify v1.8.4 // indirect
+	github.com/davecgh/go-spew v1.1.1 // indirect
 	golang.org/x/sys v0.10.0 // indirect
 )
 
