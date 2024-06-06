@@ -8,7 +8,7 @@ require (
 	github.com/bitly/timer_metrics v1.0.0
 	github.com/blang/semver v3.5.1+incompatible
 	github.com/bmizerany/perks v0.0.0-20230307044200-03f9df79da1e
-	github.com/golang/snappy v0.0.4
+	github.com/golang/snappy v0.0.5-0.20220116011046-fa5810519dcb
 	github.com/judwhite/go-svc v1.2.1
 	github.com/julienschmidt/httprouter v1.3.0
 	github.com/mreiferson/go-options v1.0.0
@@ -19,8 +19,8 @@ require (
 require (
 	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc // indirect
 	github.com/pmezard/go-difflib v1.0.1-0.20181226105442-5d4384ee4fb2 // indirect
-	github.com/stretchr/testify v1.8.4 // indirect
-	golang.org/x/sys v0.17.0 // indirect
+	github.com/stretchr/testify v1.9.0 // indirect
+	golang.org/x/sys v0.20.0 // indirect
 )
 
 replace github.com/judwhite/go-svc => github.com/mreiferson/go-svc v1.2.2-0.20210815184239-7a96e00010f6
